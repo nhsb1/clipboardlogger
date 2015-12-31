@@ -1,6 +1,5 @@
 import pyhk
-import sys 
-import os
+import sys
 from argparse import ArgumentParser
 import pyperclip
 import datetime
@@ -14,25 +13,18 @@ import datetime
 #To install: pip install *.whl 
 #Make sure to run: python.exe Scripts\pywin32_postinstall.py -install (from cmd launched as administrator)
 
-cliplist1 = []
-newnow = ""
-
 parser = ArgumentParser(description = 'cxz - copy paste to text')
 parser.add_argument("-f", "--file", dest="filename", help="file name to write output", metavar="FILE")
 parser.add_argument("-s", "--save", action="store_true", dest="savetrue", default=False, help="save current string to clipboard")
 args = parser.parse_args()
 
 def blankfile():
-	global newnow
 	newnow = str(datetime.datetime.now().date()) + ".txt"
 	print "No filename specified.  Next time, use (-f filename.txt), saving to: " + newnow
-	print "Save current clipboard content to file: CTRL+ALT+1"
-	print "Save clipboard to list Q: CTRL+ALT+Q"
-	print "Exit: CTRL+ALT+0"
-	print "Show content of current save file: CTRL+ALT+R."
-	print "Show help: CTRL+ALT+H"
-	print "Commit List Q to savefile"
-	print "-------------------------------------------------------------------------------"
+	print "Save clipboard to file hotkey: CTRL+ALT+1"
+	print "Exit program hotkey is: CTRL+ALT+0"
+	print "To print contents of %r, CTRL+ALT+R." %newnow
+	print "Command help hotkey: CTRL+ALT+H"
 	args.filename=newnow
 
 def readfile():
@@ -45,40 +37,7 @@ def readfile():
 	else:
 		print "Please specify a file to read.  -f filename.txt"	
 
-def mylistq(): #add current clipboiard to my temporary list
-	tmpclip = ""
-	tmpclip = pyperclip.paste()
-	tmpclip = tmpclip.encode('utf-8')
-	tmpclip = tmpclip.strip()
-	global cliplist1
-	cliplist1.append(tmpclip)
-	print "Clipboard content added to templistQ>"
-	#global cliplist1
-	#for i in cliplist1:
-	#	print i
-
-def qlistcontent():
-	global cliplist1
-	for i in cliplist1:
-		print i
-
-	
-def savefile():
-	global cliplist1
-	for i in cliplist1:
-		#i = pyperclip.copy(i)
-		#print i
-		#print i
-		currentclipboard = i
-		target = open(args.filename, "a") #opens the specified file for appending
-		target.write(currentclipboard)
-		target.write("\n")
-	print "Temporary List Committed to savefile>"
-
-
-
-
-def savepaste(): #
+def savepaste():
     if args.savetrue:
 		currentclipboard = pyperclip.paste() #gets the contents of the clipboard 
 		currentclipboard = currentclipboard.encode('utf-8') #cleans the string with utf-8 envoding
@@ -87,12 +46,10 @@ def savepaste(): #
 		target.write(currentclipboard)
 		target.write("\n")
 		#print currentclipboard
-		print "Clipboard content committed to savefile>"
+		print ">"
 
 def terminate():
-	print newnow
-	#sys.exit(1) 
-	os._exit(1)
+	sys.exit() 
 
 #create pyhk class instance
 hot = pyhk.pyhk()
@@ -101,13 +58,7 @@ hot = pyhk.pyhk()
 hot.addHotkey(['Ctrl', 'Alt', '1'],savepaste)
 hot.addHotkey(['Ctrl', 'Alt', 'H'],blankfile)
 hot.addHotkey(['Ctrl', 'Alt', 'R'],readfile)
-hot.addHotkey(['Ctrl', 'Alt', 'S'],savefile)
-hot.addHotkey(['Ctrl', 'Alt', '0'],terminate)
-hot.addHotkey(['Ctrl', 'Alt', 'Q'],mylistq)
-hot.addHotkey(['Ctrl', 'Alt', 'U'],qlistcontent) 
-hot.addHotkey(['Ctrl', 'Alt', 'W'],mylistw)
-hot.addHotkey(['Ctrl', 'Alt', 'I'],wlistcontent) 
-
+hot.addHotkey(['Ctrl', 'Alt','0'],terminate)
 
 if args.filename:
 	print "Exit hotkey is: CTRL+ALT+0"
