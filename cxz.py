@@ -14,7 +14,8 @@ import datetime
 #To install: pip install *.whl 
 #Make sure to run: python.exe Scripts\pywin32_postinstall.py -install (from cmd launched as administrator)
 
-cliplist1 = []
+cliplistq = []
+cliplistw=[]
 newnow = ""
 
 parser = ArgumentParser(description = 'cxz - copy paste to text')
@@ -50,22 +51,38 @@ def mylistq(): #add current clipboiard to my temporary list
 	tmpclip = pyperclip.paste()
 	tmpclip = tmpclip.encode('utf-8')
 	tmpclip = tmpclip.strip()
-	global cliplist1
-	cliplist1.append(tmpclip)
+	global cliplistq
+	cliplistq.append(tmpclip)
 	print "Clipboard content added to templistQ>"
+
+
+def qlistcontent():
+	#print ">>"
+	global cliplistq
+	for i in cliplistq:
+		print i
+
+def mylistw(): #add current clipboiard to my temporary list
+	tmpclip = ""
+	tmpclip = pyperclip.paste()
+	tmpclip = tmpclip.encode('utf-8')
+	tmpclip = tmpclip.strip()
+	global cliplistw
+	cliplistw.append(tmpclip)
+	print "Clipboard content added to templistW>"
 	#global cliplist1
 	#for i in cliplist1:
 	#	print i
 
-def qlistcontent():
-	global cliplist1
-	for i in cliplist1:
+def wlistcontent():
+	global cliplistw
+	for i in cliplistw:
 		print i
 
 	
 def savefile():
-	global cliplist1
-	for i in cliplist1:
+	global cliplistq
+	for i in cliplistq:
 		#i = pyperclip.copy(i)
 		#print i
 		#print i
@@ -73,7 +90,16 @@ def savefile():
 		target = open(args.filename, "a") #opens the specified file for appending
 		target.write(currentclipboard)
 		target.write("\n")
-	print "Temporary List Committed to savefile>"
+	global cliplistw
+	for i in cliplistw:
+		currentclipboard = i
+		target = open(args.filename, "a") #opens the file for appending
+		target.write(currentclipboard)
+		target.write("\n")
+	print "Temporary Lists Committed to savefile>"
+	global cliplistq, cliplistw
+	cliplistq=[]
+	cliplistw=[]
 
 
 
