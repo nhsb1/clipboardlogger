@@ -1,8 +1,6 @@
 # cxz/ccc (clipboardlogger)
 #
-
 Notetaking and Multi-Clipboard Management Tool for Windows (7/10).  
--------
 
 Features
 -------
@@ -33,9 +31,13 @@ Dependencies
 pip install image, pyperclip, pyhk, sys, os, argparse, ArgumentParser, pyperclip, datetime, atexit, PIL
 
 pyHook, and pyWin32 are availabe here: http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
 PythonMagick - http://www.lfd.uci.edu/~gohlke/pythonlibs/#pythonmagick
+
 To install: pip install *.whl
+
 python.exe Scripts\pywin32_postinstall.py -install (from cmd launched as administrator)
+
 Visual Studio C++ 2008 Sp1 Redistributable MFC Security update - http://www.microsoft.com/en-us/download/details.aspx?id=26368
 
 
