@@ -1,6 +1,6 @@
 # cxz/ccc (clipboardlogger)
 #
-Notetaking and Multi-Clipboard Management Tool for Windows (7/10).  
+Notetaking and Multi-Clipboard Management Tool for Windows (7, and 10).  
 
 Features
 -------
