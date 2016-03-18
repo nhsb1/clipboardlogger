@@ -5,14 +5,23 @@ Notetaking and Multi-Clipboard Management Tool for Windows (7/10).
 Features
 -------
 Four additional non-system clipboards (CTRL-ALT+1,2,3,4)
+
 List contents of individual clipboards (Right-Shift+1,2,3,4)
+
 Save all clipboards to a file (by defaults: YYYY-MM-DD.txt) (CTRL-ALT+S)
+
 Show master clipboard history for (CTRL-ALT+M)
+
 Traverse Master Clipboard History and Copy to System Clipboard (Right-Shift+Alt; Right-Shift+/)
+
 Clear All Clipboard (CTRL-ALT+9)
+
 Load/Print active save file to console/clipboard (CTRL-ALT+L)
+
 Show Help (CTRL-ALT+H)
+
 Image Clipboard (CTRL-ALT+I)
+
 Save image Clipbaord items to disk (millisecond date-stamp for inidvidual items) (Right-Shift+I)
 
 
